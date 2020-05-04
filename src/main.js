@@ -6,7 +6,12 @@ import router from './router'
 import store from './store'
 
 Vue.use(Vueaxios,axios);
-axios.defaults.baseURL="/api"  //根据前端的跨域方式做调整——接口代理跨域
+//axios.defaults.baseURL="/api"  //根据前端的跨域方式做调整——接口代理跨域
+//axios.defaults.baseURL="easy-mock的地址"  //如果采用easy-mock方式伪造数据，那么这里的接口就要写成easy-mock平台提供的baseURL
+//const mock=true; //mock开关
+// if(mock){
+//   require('./mock/api.js')
+// }
 axios.defaults.timeout=6000;  //发送请求超时长
 axios.interceptors.response.use(
   (config)=>{
