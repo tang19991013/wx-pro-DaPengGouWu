@@ -237,6 +237,7 @@ export default {
          height: 0;
          transition: height 0.5s;
          z-index: 10;
+         background: #ffffff;
      }
      .header .fa1 .menu .item-menu .children .pro{
          width: 201px;
