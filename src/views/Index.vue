@@ -126,7 +126,7 @@
            <div class="ads">
                <div v-for="(img,i) of adsList" :key="i">
                    <a :href="`/#/product/${img.id}`">
-                       <img :src="img.img" alt="">
+                       <img v-lazy="img.img">
                    </a>
                </div>
            </div>
@@ -134,7 +134,7 @@
            <div class="banner">
                <div>
                    <a :href="`/#/product/${bannerImg.id}`">
-                       <img :src="bannerImg.img" alt="">
+                       <img v-lazy="bannerImg.img" alt="">
                    </a>
                </div>
            </div>
@@ -146,7 +146,7 @@
                     <div class="neirong">
                         <div class="leftban">
                             <a href="/#/product/23">
-                                <img src="/imgs/mix-alpha.jpg" alt="">
+                                <img v-lazy="'/imgs/mix-alpha.jpg'" alt="">
                             </a>
                         </div>
                         <div class="rightpro">
@@ -155,12 +155,12 @@
                                     <a :href="`/#/product/${p.id}`">
                                         <span :class="{newpro:j%2==0,miaosha:j%2!=0}">{{j%2==0?"新品":"秒杀"}}</span>
                                         <div class="pimg">
-                                            <img :src="p.mainImage">
+                                            <img v-lazy="p.mainImage">
                                         </div>
                                         <p class="subtitle">{{p.subtitle}}</p>
                                         <p class="name">{{p.name}}</p>
-                                        <p class="pri">{{p.price.toFixed(2)}}元</p>
                                     </a>
+                                    <p class="pri" @click="addCart(p.id)">{{p.price.toFixed(2)}}元</p>
                                 </div>
                             </div>
                         </div>
@@ -170,10 +170,13 @@
        </div>
         <!-- 服务条组件 -->
         <service-bar></service-bar>
+         <!-- 提示窗 -->
+       <modal :showModal="showModal" @close="close"></modal>
     </div>
 </template>
 <script>
 import ServiceBar from './../components/ServiceBar'
+import Modal from './../components/Modal'
 import {Swiper,SwiperSlide} from 'vue-awesome-swiper'
 import 'swiper/css/swiper.css'
 
@@ -181,12 +184,13 @@ export default {
     name:"index",
     data(){
         return{
+            showModal:false,
             swiperOption:{
                 autoplay:true,//自动播放
                 loop:true,//循环播放
                 effect:"cube",
                 cubeEffect: {
-                    slideShadows: true,
+                    slideShadows: false,
                     shadow: true,
                     shadowOffset: 100,
                     shadowScale: 0.6
@@ -278,6 +282,20 @@ export default {
         }
     },
     methods:{
+        close(){
+            this.showModal=false;
+        },
+        addCart(id){
+            // this.axios.post("/carts",{
+            //     productId:id,
+            //     selected:true
+            // }).then( res=>{
+            //     console.log(res);
+            // }).catch(err=>{
+            //     console.log(err);
+            // })
+            this.showModal=true;
+        },
         init(){
             this.axios.get("/products",{
                 params:{
@@ -299,7 +317,8 @@ export default {
     components:{
         ServiceBar,
         Swiper,
-        SwiperSlide
+        SwiperSlide,
+        Modal
     }
 }
 </script>
@@ -491,6 +510,7 @@ export default {
              color: #F20A0A;
              font-size: 14px;
              margin-top: 10px;
+             cursor: pointer;
              
          }
          .index .con .c .pro-list .neirong .rightpro .list .item .pri::after{

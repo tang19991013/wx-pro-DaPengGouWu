@@ -11,7 +11,7 @@
                         <a href="javascript:;">协议规则</a>
                     </div>
                     <div class="header-right">
-                        <a href="javascript:;">登录</a>
+                        <a href="/#/login">登录</a>
                         <a href="javascript:;">注册</a>
                         <a href="javascript:;"> <span class="ionc-cart"></span> 购物车</a>
                     </div>
@@ -32,7 +32,7 @@
                                 <div class="pro" v-for="(p,i) of PhoneList" :key="i">
                                     <a target="_blank" :href="`#/product/${p.id}`">
                                         <div class="pro-img">
-                                            <img :src="p.mainImage">
+                                            <img v-lazy="p.mainImage">
                                         </div>
                                         <div class="pro-name" v-text="p.name"></div>
                                         <div class="pro-pic">{{p.price.toFixed(2)}}元</div>

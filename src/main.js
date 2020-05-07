@@ -4,8 +4,13 @@ import Vueaxios from 'vue-axios'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import VueLazyload from 'vue-lazyload'
+
 
 Vue.use(Vueaxios,axios);
+Vue.use(VueLazyload,{
+  loading:'/imgs/loading-svg/loading-bars.svg',//图片加载是等待的动画
+})
 axios.defaults.baseURL="/api"  //根据前端的跨域方式做调整——接口代理跨域
 axios.defaults.timeout=6000;  //发送请求超时长
 axios.interceptors.response.use(
