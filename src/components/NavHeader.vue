@@ -11,9 +11,17 @@
                         <a href="javascript:;">协议规则</a>
                     </div>
                     <div class="header-right">
-                        <a href="/#/login">登录</a>
-                        <a href="javascript:;">注册</a>
-                        <a href="javascript:;"> <span class="ionc-cart"></span> 购物车</a>
+                        <div class="weidenglu" v-if="uName===''">
+                            <a href="/#/login">登录</a>
+                            <a href="javascript:;">注册</a>
+                        </div>
+                        <div v-else class="denglu">
+                            <a href="/#/login">{{uName}}</a>
+                            <a href="javascript:;" @click="loginout">注销</a>
+                        </div>
+                        <div>
+                             <a href="javascript:;"> <span class="ionc-cart"></span> 购物车({{proCount}})</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -62,15 +70,19 @@
     </div>
 </template>
 <script>
+import {mapState,mapMutations} from 'vuex'
 export default {
     name:"nav-header",
     data(){
         return{
-            username:"",
             PhoneList:[],
         }
     },
+    computed:{
+        ...mapState(["uName","proCount"])
+    },
     methods:{
+        ...mapMutations(["setUname"]),
          getProductList(){
             this.axios.get("/products",{
                 params:{
@@ -81,10 +93,20 @@ export default {
                 console.log(res.list);
                 this.PhoneList=res.list;
             })
+        },
+        loginout(){
+            sessionStorage.clear();
+            localStorage.clear();
+            this.setUname('');
         }
     },
+    created(){
+        let uname=localStorage.getItem("uname") || sessionStorage.getItem("uname");
+        this.setUname(uname||'')
+        
+    },
      mounted(){
-         this.getProductList()
+         this.getProductList()    
     },
 }
 </script>
@@ -111,15 +133,31 @@ export default {
     }
      .header .con .header-right{
          width: 200px;
+         position: relative;
      }
-     .header .con .header-right a{
+     .header .con .header-right .weidenglu{
+        margin-right:111px;
+     }
+      .header .con .header-right .weidenglu>a:last-child{
+           margin-left: 13px;
+      }
+     .header .con .header-right .denglu{
+         margin-left: -100px;
+     }
+     .header .con .header-right .denglu>a:last-child{
          margin-left: 13px;
      }
-     .header .con .header-right a:last-child{
-         display: inline-block;
+     .header .con .header-right div:last-child{
          width: 110px;
+         height: 100%;
          background-color:#FF7301;
-
+         position: absolute;
+         right: 0;
+         top: 0;
+     }
+     .header .con .header-right div:last-child>a{
+         color: #ffffff;
+         font-size: 12px;
      }
      .header .con .header-right .ionc-cart{
          display: inline-block;

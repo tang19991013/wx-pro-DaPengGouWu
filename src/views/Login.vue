@@ -14,12 +14,16 @@
                         </div>
                         <div class="style1">
                             <div class="uname">
-                                <input type="text" placeholder="邮箱/手机号码/小米ID">
+                                <input type="text" placeholder="邮箱/手机号码/小米ID" v-model="uname">
                             </div>
                             <div class="upwd">
-                                <input type="text" placeholder="密码">
+                                <input type="password" placeholder="密码" v-model="upwd">
                             </div>
-                            <button class="btn">登录</button>
+                            <div>
+                                <input type="checkbox" name="" id="mima" v-model="check">
+                                <label for="mima">记住密码</label>
+                            </div>
+                            <button class="btn" @click="login">登录</button>
                             <p>
                                 <a href="">手机短信登录/注册</a>
                                 <span>
@@ -50,10 +54,37 @@
 </template>
 <script>
 import './../assets/css/reset.css'
+import {mapMutations,mapState} from 'vuex'
 export default {
     name:"login",
     data(){
-        return{}
+        return{
+            uname:"",
+            upwd:"",
+            userId:"",
+            check:false,//是否记住密码
+        }
+    },
+    computed:{
+        ...mapState(["uName"])
+    },
+    methods:{
+        ...mapMutations(["setUname"]),
+        login(){
+           this.axios.post("/user/login",{
+                username:this.uname,
+                password:this.upwd
+            }).then(res=>{
+                console.log(res);
+                if(this.check){
+                    localStorage.setItem("uname",this.uname);
+                }else{
+                    sessionStorage.setItem("uname",this.uname);
+                }
+                // this.setUname(res.username);
+                this.$router.push("/index");
+            })
+        },
     }
 }
 </script>

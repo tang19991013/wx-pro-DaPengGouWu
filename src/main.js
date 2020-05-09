@@ -26,10 +26,13 @@ axios.interceptors.response.use(
      * }
      */
     let res=config.data;
+    let  path=location.hash; //地址栏中http://localhost:8080/后面的所有路由     例如： #/login
       if(res.status==0){
         return res.data;
       }else if(res.status==10){
-        window.location.href='/#/login';
+        if(path != '#/index'){
+          window.location.href='/#/login';
+        }
       }else{
         alert(res.msg);
       }
