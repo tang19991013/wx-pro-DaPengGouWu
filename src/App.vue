@@ -17,6 +17,7 @@ export default {
      //获取用户购物车的数量
       getCartscount(){
          this.axios.get("/carts/products/sum").then(res=>{
+           console.log("购物车数量："+res);
           this.setCount(res);
       })
     }

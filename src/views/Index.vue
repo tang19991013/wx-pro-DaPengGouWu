@@ -178,14 +178,15 @@
 import ServiceBar from './../components/ServiceBar'
 import Modal from './../components/Modal'
 import {Swiper,SwiperSlide} from 'vue-awesome-swiper'
+import {mapState,mapMutations} from 'vuex'
 import 'swiper/css/swiper.css'
 
 export default {
     name:"index",
     data(){
         return{
-            showModal:false,
-            swiperOption:{
+            showModal:false,//是否展示添加购物车成功的模态框
+            swiperOption:{  //轮播图的相关设置
                 autoplay:true,//自动播放
                 loop:true,//循环播放
                 effect:"cube",
@@ -281,20 +282,27 @@ export default {
             PhoneList:[],//保存首页商品的二维数组。
         }
     },
+    computed:{
+        ...mapState(["proCount","uName"]),
+    },
     methods:{
+        ...mapMutations(["setCount"]),
         close(){
             this.showModal=false;
         },
+        //向购物车中添加商品
         addCart(id){
-            // this.axios.post("/carts",{
-            //     productId:id,
-            //     selected:true
-            // }).then( res=>{
-            //     console.log(res);
-            // }).catch(err=>{
-            //     console.log(err);
-            // })
-            this.showModal=true;
+            this.axios.post("/carts",{
+                productId:id,
+                selected:true
+            }).then( res=>{
+                console.log(res);
+                this.showModal=true;
+                this.setCount(res.cartTotalQuantity);
+            }).catch(err=>{
+                console.log(err);
+            })
+            
         },
         init(){
             this.axios.get("/products",{
@@ -313,12 +321,15 @@ export default {
     },
     mounted(){
         this.init();
+        console.log(this.proCount);
     },
     components:{
         ServiceBar,
         Swiper,
         SwiperSlide,
-        Modal
+        Modal,
+        mapState,
+        mapMutations
     }
 }
 </script>
@@ -350,7 +361,7 @@ export default {
         position: absolute;
         left: 263px;
         top: -25px;
-        border: 1px solid #E5E5E5;
+        /* border: 1px solid #E5E5E5; */
         box-shadow:0px 7px 6px 0px rgba(0, 0, 0, 0.11);
         display: none;
     }

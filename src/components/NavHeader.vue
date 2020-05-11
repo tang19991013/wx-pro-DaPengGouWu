@@ -16,11 +16,11 @@
                             <a href="javascript:;">注册</a>
                         </div>
                         <div v-else class="denglu">
-                            <a href="/#/login">{{uName}}</a>
+                            <a href="javascript:;">{{uName}}</a>
                             <a href="javascript:;" @click="loginout">注销</a>
                         </div>
                         <div>
-                             <a href="javascript:;"> <span class="ionc-cart"></span> 购物车({{proCount}})</a>
+                             <a href="/#/cart"> <span class="ionc-cart"></span> 购物车({{proCount}})</a>
                         </div>
                     </div>
                 </div>
@@ -79,8 +79,13 @@ export default {
         }
     },
     computed:{
-        ...mapState(["uName","proCount"])
+        ...mapState(["uName","proCount"]),
     },
+    // watch:{
+    //   proCount(){
+    //       this.$router.go(0);
+    //   }  
+    // },
     methods:{
         ...mapMutations(["setUname"]),
          getProductList(){
@@ -90,7 +95,6 @@ export default {
                     pageSize:6
                 }
             }).then( res=>{
-                console.log(res.list);
                 this.PhoneList=res.list;
             })
         },
