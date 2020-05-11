@@ -71,6 +71,7 @@
 </template>
 <script>
 import {mapState,mapMutations} from 'vuex'
+import './../assets/css/logo.css'
 export default {
     name:"nav-header",
     data(){
@@ -186,7 +187,7 @@ export default {
          align-items: center;   
          position: relative;  
     }
-    .header .fa1 .logo{
+    /* .header .fa1 .logo{
          width:55px;
          height: 55px;
          background-color: #FF6600;
@@ -217,7 +218,7 @@ export default {
     .header .logo a:hover::before{
         margin-left:-110px;
        transition:margin .2s;
-    }
+    } */
      .header .fa1 .menu{
         margin-right: 188px;
      }

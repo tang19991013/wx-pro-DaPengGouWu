@@ -1,4 +1,5 @@
 <template>
+<!-- 底部服务条组件 -->
     <div class="service">
         <div class="rong">
             <ul>

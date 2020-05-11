@@ -1,5 +1,6 @@
 <template>
     <div class="proparams">
+        <!-- 产品站页面的商品参数组件 -->
         <div class="rongqi" :class="{isfixed:isFixed}">
             <div class="name">
                 <p>{{name}}</p>

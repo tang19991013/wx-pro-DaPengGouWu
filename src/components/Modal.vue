@@ -1,5 +1,6 @@
 <template>
     <transition name="slide">
+        <!-- 模态框组件 -->
          <div class="modal" v-show="showModal">
          <div class="mask"></div>
          <div class="modal-dialog">
