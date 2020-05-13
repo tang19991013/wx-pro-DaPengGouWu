@@ -20,7 +20,7 @@
                             <a href="javascript:;" @click="loginout">注销</a>
                         </div>
                         <div>
-                             <a href="/#/cart"> <span class="ionc-cart"></span> 购物车({{proCount}})</a>
+                             <a href="/#/cart"> <span class="ionc-cart"></span> 购物车<span v-show="uName!==''">({{proCount}})</span></a>
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@ export default {
     //   }  
     // },
     methods:{
-        ...mapMutations(["setUname"]),
+        ...mapMutations(["setUname","setCount"]),
          getProductList(){
             this.axios.get("/products",{
                 params:{
@@ -99,19 +99,37 @@ export default {
                 this.PhoneList=res.list;
             })
         },
+        //注销登录
         loginout(){
-            sessionStorage.clear();
-            localStorage.clear();
-            this.setUname('');
-        }
+            this.axios.post('/user/logout').then(res=>{
+                this.message.success('退出成功');
+                sessionStorage.clear();
+                localStorage.clear();
+                this.setUname('');
+                this.setCount(0);
+            })  
+        },
+         //获取用户购物车的数量
+        getCartscount(){
+         this.axios.get("/carts/products/sum").then(res=>{
+           console.log("购物车数量："+res);
+          this.setCount(res);
+      })
+    },
     },
     created(){
         let uname=localStorage.getItem("uname") || sessionStorage.getItem("uname");
         this.setUname(uname||'')
         
     },
-     mounted(){
-         this.getProductList()    
+    mounted(){
+         this.getProductList();
+         //如果是从登录页面跳转过来的话，就重新想获取购物车数量
+        //  if(thi.$route.params.from=="login"){
+        //       this.getCartscount();
+        //  }
+        this.getCartscount();
+        
     },
 }
 </script>

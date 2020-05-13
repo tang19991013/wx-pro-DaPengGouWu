@@ -69,7 +69,7 @@ export default {
         ...mapState(["uName"])
     },
     methods:{
-        ...mapMutations(["setUname"]),
+        ...mapMutations(["setUname","setCount"]),
         login(){
            this.axios.post("/user/login",{
                 username:this.uname,
@@ -81,8 +81,15 @@ export default {
                 }else{
                     sessionStorage.setItem("uname",this.uname);
                 }
-                // this.setUname(res.username);
-                this.$router.push("/index");
+                this.setUname(res.username);
+                // this.setCount();
+                this.$router.push("/index")
+                // this.$router.push({
+                //     name:"index",
+                //     params:{
+                //         from:"login"
+                //     }
+                // });
             })
         },
     }

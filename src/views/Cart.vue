@@ -82,6 +82,7 @@ export default {
             let selected=count.productSelected;
             if(type=='-'){
                 if(shulian<=1){
+                     this.message.warning("至少保留一件");
                     shulian=1;
                 }else{
                     --shulian;
@@ -90,7 +91,7 @@ export default {
                 if(shulian>=1){
                 ++shulian;
                 if(shulian==count.productStock){
-                    alert("库存不足")
+                    this.message.warning("库存不足")
                     shulian=count.productStock;
                     return;
                     }
@@ -116,6 +117,7 @@ export default {
         del(p){
             let id=p.productId;
             this.axios.delete(`/carts/${id}`).then(res=>{
+                this.message.success("删除成功");
                 this.rendDate(res);
             })
         },
@@ -130,7 +132,7 @@ export default {
         order(){
             let ischecked=this.cartList.some(item=>item.productSelected);
             if(ischecked==false){
-                alert("最少选择一项商品");
+                this.message.warning("最少选择一项商品");
             }else{
                 this.$router.push('/order/confirm');
             }
