@@ -39,11 +39,17 @@ axios.interceptors.response.use(
         if(path != '#/index'){
           window.location.href='/#/login';
         }
+        return Promise.reject(res);
       }else{
-        this.message.warning(res.msg);
+        message.warning(res.msg);
+        return Promise.reject(res);
       }
-  }
-)
+  },(error)=>{
+    let res=error.response;
+    message.error(geres.data.message);
+    return Promise.reject(error);
+
+  })
 Vue.config.productionTip = false
 
 new Vue({

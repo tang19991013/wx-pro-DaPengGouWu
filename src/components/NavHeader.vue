@@ -17,6 +17,7 @@
                         </div>
                         <div v-else class="denglu">
                             <a href="javascript:;">{{uName}}</a>
+                            <a href="/#/order/list">我的订单</a>
                             <a href="javascript:;" @click="loginout">注销</a>
                         </div>
                         <div>
@@ -164,10 +165,17 @@ export default {
       .header .con .header-right .weidenglu>a:last-child{
            margin-left: 13px;
       }
+      .header .con .header-right .weidenglu>a:nth-child(2){
+           margin-left: 13px;
+      }
      .header .con .header-right .denglu{
          margin-left: -100px;
+         margin-right: 60px;
      }
      .header .con .header-right .denglu>a:last-child{
+         margin-left: 13px;
+     }
+      .header .con .header-right .denglu>a:nth-child(2){
          margin-left: 13px;
      }
      .header .con .header-right div:last-child{
