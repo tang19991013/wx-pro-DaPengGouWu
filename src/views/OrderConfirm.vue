@@ -258,6 +258,7 @@ export default {
                 this.axios.post("/orders",{
                     shippingId:item.id
                 }).then(res=>{
+                    console.log(res.orderNo);
                     this.$router.push({
                         path:"/order/pay",
                         query:{
