@@ -2,14 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from './../views/Home'
 import Index from './../views/Index'
-import Product from './../views/Product'
-import Details from './../views/Details'
-import Cart from './../views/Cart'
 import Order from './../views/Order'
-import OrderConfirm from './../views/OrderConfirm'
-import OrderList from './../views/OrderList'
-import OrderPay from './../views/OrderPay'
-import AliPay from './../views/AliPay'
 
 
 
@@ -30,21 +23,25 @@ Vue.use(VueRouter)
       {
         path:"/product/:id",
         name:"product",
-        component:Product,
-        props:true
+        props:true,
+      component: () => import(/* webpackChunkName: "Product" */ '../views/Product.vue')
+
       },
       {
         path:"/details/:id",
         name:"details",
-        component:Details,
-        props:true
+        props:true,
+      component: () => import(/* webpackChunkName: "Details" */ '../views/Details.vue')
+
       }
     ]
   },
   {
     path: '/cart',
     name: 'cart',
-    component: Cart,
+    component: () => import(/* webpackChunkName: "Cart" */ '../views/Cart.vue')
+
+    
   },
   {
     path:"/order",
@@ -54,30 +51,30 @@ Vue.use(VueRouter)
         {
           path:"list",
           name:"order-list",
-          component:OrderList
+          component: () => import(/* webpackChunkName: "OrderList" */ '../views/OrderList.vue')
+
         },
         {
           path:"confirm",
           name:"order-confirm",
-          component:OrderConfirm
+          component: () => import(/* webpackChunkName: "OrderConfirm" */ '../views/OrderConfirm.vue')
+
         },
         {
           path:"pay",
           name:"order-pay",
-          component:OrderPay
+          component: () => import(/* webpackChunkName: "OrderPay" */ '../views/OrderPay.vue')
+
         },
         {
           path:"alipay",
           name:"alipay",
-          component:AliPay
+          component: () => import(/* webpackChunkName: "alipay" */ '../views/AliPay.vue')
         },
         {
           path: 'notdata',
           name: 'not-data',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
-          component: () => import(/* webpackChunkName: "login" */ '../views/NotData.vue')
+          component: () => import(/* webpackChunkName: "not-data" */ '../views/NotData.vue')
         }   
     ]
   },
