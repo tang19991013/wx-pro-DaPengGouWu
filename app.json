@@ -1,0 +1,56 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/category/category",
+    "pages/goods_list/goods_list",
+    "pages/goods_detail/goods_detail",
+    "pages/cart/cart",
+    "pages/collect/collect",
+    "pages/order/order",
+    "pages/search/search",
+    "pages/user/user",
+    "pages/feedback/feedback",
+    "pages/login/login",
+    "pages/auth/auth",
+    "pages/pay/pay"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "大鹏优购",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#000",
+    "backgroundColor": "#fafafa",
+    "list": [
+        {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./imgs/home.png",
+        "selectedIconPath": "./imgs/home-o.png"
+        },
+        {
+          "pagePath": "pages/category/category",
+          "text": "分类",
+          "iconPath": "./imgs/category.png",
+          "selectedIconPath": "./imgs/category-o.png"
+        },
+        {
+          "pagePath": "pages/cart/cart",
+          "text": "购物车",
+          "iconPath": "./imgs/cart_20190818_110336.png",
+          "selectedIconPath": "./imgs/cart-o.png"
+        },
+        {
+          "pagePath": "pages/user/user",
+          "text": "我的",
+          "iconPath": "./imgs/my.png",
+          "selectedIconPath": "./imgs/my-o.png"
+        }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
