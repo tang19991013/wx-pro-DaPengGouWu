@@ -1,1 +1,47 @@
-<!--index.wxml-->
+<!-- 搜索头组件 -->
+<search></search>
+<!-- 轮播图 -->
+<swiper class="swiper" autoplay="{{true}}" indicator-dots="{{true}}" indicator-color="#9c9c9c" indicator-active-color="#fff" interval="3000" circular="{{true}}"
+>
+    <swiper-item class="swiper_item" wx:for="{{swiperList}}" wx:key="{{goods_id}}">
+        <navigator url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+            <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="true" >
+            </image>
+        </navigator>
+    </swiper-item>
+</swiper>
+<!-- 分类导航 -->
+<view class="nav">
+    <block wx:for="{{navList}}" wx:key="index">
+            <navigator  class="block" url="{{item.navigator_url}}" open-type="{{item.open_type}}">
+                 <image src="{{item.image_src}}" mode="widthFix" lazy-load="true" >    
+                </image>
+            </navigator>
+    </block>
+</view>
+<!-- 楼层部分 -->
+<view class="louceng">
+    <view class="footer"
+     wx:for="{{LunCengList}}"
+     wx:for-item="item"
+     wx:key="index"
+    >
+        <view class="title">
+            <image src="{{item.floor_title.image_src}}" mode="widthFix" />
+        </view>
+        <view class="prolist">
+                    <navigator  
+                    wx:for="{{item.product_list}}"
+                    wx:for-item="pro"
+                    wx:key="index1"
+                    url="{{pro.navigator_url}}"
+                    open-type="{{pro.open_type}}"
+                    >
+                        <image src="{{pro.image_src}}"
+                            mode="scaleToFill"
+                        />
+                    </navigator>
+        </view>
+       
+    </view>
+</view>

@@ -1,0 +1,15 @@
+/* components/search/search.wxss */
+@import "../../styles/iconfont.wxss";
+.search{
+    height: 100rpx;
+    text-align: center;
+    padding: 10px;
+   background-color: #EB4450;
+}
+.search .search_item{
+    height: 60rpx;
+    background: #ffffff;
+    border-radius: 16rpx;
+    color: #9F978E;
+    line-height: 60rpx;
+}

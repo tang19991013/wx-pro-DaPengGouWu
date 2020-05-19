@@ -1,21 +1,33 @@
-/**index.wxss**/
-.userinfo {
+.swiper{
+  width: 750rpx;
+  height: 340rpx;
+}
+.swiper image{
+  width: 100%;
+}
+/* 分类导航 */
+.nav{
   display: flex;
-  flex-direction: column;
-  align-items: center;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.nav .block{
+  padding: 10px;
+  flex: 1;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.nav .block image{
+  width: 100%;
+  height: 50%;
 }
-
-.usermotto {
-  margin-top: 200px;
+/* 楼层部分 */
+.louceng .footer .title image{
+  width: 100%;
 }
+.louceng .footer navigator{
+  float: left;
+  width: 33.3%;
+}
+.louceng .footer image{
+  width: 100%;
+}
+.louceng .footer navigator:not(:first-child) image{
+  height: 30.72711207vw;
+} 
