@@ -1,2 +1,24 @@
-<!--pages/goods_list/goods_list.wxml-->
-<text>pages/goods_list/goods_list.wxml</text>
+<view class="goods_list">
+    <search></search>
+    <tabs tabs="{{tabs}}" bindchangeTabs="changeTabs">
+      <block wx:if="{{tabs[0].isActive}}">   
+        <view class="pro-list">
+            <navigator class="pro-item" wx:for="{{proList}}" wx:key="goods_id">
+                <view class="img">
+                    <image mode="widthFix" src="{{item.goods_small_logo}}"/>
+                </view>
+                <view class="info">
+                    <text class="title">{{item.goods_name}}</text>
+                    <view class="price">{{item.goods_price}}元</view>
+                </view>
+            </navigator>
+        </view>
+      </block>
+      <block wx:elif="{{tabs[1].isActive}}">
+          我是按销量的商品列表
+      </block>
+      <block wx:else="{{tabs[2].isActive}}">
+          我是按价格排序的商品列表
+      </block>
+    </tabs>
+</view>

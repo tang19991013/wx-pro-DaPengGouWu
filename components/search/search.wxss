@@ -5,6 +5,7 @@
     text-align: center;
     padding: 10px;
    background-color: #EB4450;
+   z-index: 10;
 }
 .search .search_item{
     height: 60rpx;

@@ -1,0 +1,12 @@
+.tabs .tabs-item{
+    display: flex;
+}
+.tabs .item{
+    width: 33.3%;
+    text-align: center;
+    padding: 5rpx 0;
+}
+.tabs .item.active{
+    color: #EB4450;
+    border-bottom: 1px solid #EB4450;
+}

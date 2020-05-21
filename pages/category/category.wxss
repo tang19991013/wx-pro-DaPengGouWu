@@ -1,1 +1,44 @@
-/* pages/category/category.wxss */
+page{
+    height: 100%;
+}
+.cates{
+    height: 100%;
+}
+.cates .container {
+    height: 100%;
+    height: calc(100vh-90rpx);
+    display: flex;
+}
+.cates .container .left{
+    flex: 2;
+
+}
+.cates .container .left .active{
+    color: #EB4450;
+    border-left: 5rpx solid #EB4450;
+}
+.cates .container .right{
+    flex: 5;
+}  
+.cates .container .left .left-item{
+    text-align:center;
+    height: 80rpx;
+    line-height: 80rpx;
+    font-size: 30rpx;
+}
+
+.cates .container .right .goods{
+    text-align: center;
+    margin-top:30rpx ;
+}
+.cates .container .right .goods .goods-list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.cates .container .right .goods .goods-list navigator{
+    width: 33.3%;
+    text-align: center;
+}
+.cates .container .right .goods .goods-list image{
+    width: 50%;
+}
