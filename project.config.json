@@ -21,7 +21,7 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"useCompilerModule": true,
+		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false
 	},
 	"compileType": "miniprogram",
@@ -70,6 +70,13 @@
 					"name": "从分类页面跳转商品列表页面",
 					"pathName": "pages/goods_list/goods_list",
 					"query": "cld=5",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "商品详情页",
+					"pathName": "pages/goods_detail/goods_detail",
+					"query": "pid=43986",
 					"scene": null
 				}
 			]

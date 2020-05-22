@@ -3,7 +3,9 @@
     <tabs tabs="{{tabs}}" bindchangeTabs="changeTabs">
       <block wx:if="{{tabs[0].isActive}}">   
         <view class="pro-list">
-            <navigator class="pro-item" wx:for="{{proList}}" wx:key="goods_id">
+            <navigator class="pro-item" wx:for="{{proList}}" wx:key="goods_id"
+            url="/pages/goods_detail/goods_detail?pid={{item.goods_id}}"
+            >
                 <view class="img">
                     <image mode="widthFix" src="{{item.goods_small_logo}}"/>
                 </view>
